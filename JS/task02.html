@@ -1,44 +1,81 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<title>IFE JavaScript Task 02</title>
-	</head>
+<head>
+  <meta charset="utf-8">
+  <title>IFE JavaScript Task 01</title>
+</head>
 
-	<body>
+<body>
 
-		<h3>污染城市列表</h3>
-		<ul id="aqi-list">
-			<li></li>
-			<li></li>
-		</ul>
+  <h3>污染城市列表</h3>
+  <ul id="aqi-list">
+    <!--   
+    <li>第一名：福州（样例），10</li>
+      <li>第二名：福州（样例），10</li> -->
+  </ul>
 
-		<script type="text/javascript">
-			var aqiData = [
-				["北京", 90],
-				["上海", 50],
-				["福州", 10],
-				["广州", 50],
-				["成都", 90],
-				["西安", 100]
-			];
+  <script type="text/javascript">
 
-			(function() {
+    var aqiData = [
+      ["北京", 90],
+      ["上海", 50],
+      ["福州", 10],
+      ["广州", 50],
+      ["成都", 90],
+      ["西安", 100]
+    ];
 
-				/*
-				在注释下方编写代码
-				遍历读取aqiData中各个城市的数据
-				将空气质量指数大于60的城市显示到aqi-list的列表中
-				*/
-				for(var i = 0; i < aqiData.length; i++) {
-					if(aqiData[i][1] >= 60) {
-						
-					}
-				}
+    function sortNumber(a, b) {
+      return a - b;
+    }
 
-			})();
-		</script>
-	</body>
+    (function () {
+
+      /*
+      在注释下方编写代码
+      遍历读取aqiData中各个城市的数据
+      将空气质量指数大于60的城市显示到aqi-list的列表中
+      */
+      // var aqiul=document.getElementById('aqi-list');
+      // var b=aqiData.filter(function(a){return a[1]>60;});//选择出空气质量大于60的城市，赋值给数组b
+      // //对空气质量指数由大到小排序
+      //    b.sort(function(a,c){
+      //     return c[1]-a[1];
+      //    });
+      // (function wirte(){    //输出
+      //   for(var i=0;i<b.length;i++){
+      //     var r;
+      //     var li=document.createElement('li');
+      //     aqiul.append(li);
+      //     li.innerHTML="第"+(i+1)+"名："+b[i];
+      //   }
+      // })();
+      var aqiul = document.getElementById("aqi-list");
+      var List = new Array();
+      var j = 0;
+
+      for (var i = 0; i < aqiData.length; i++) {
+        if (aqiData[i][1] > 60) {
+          List[j] = aqiData[i];
+          j++;
+        }
+      }
+      List.sort(function sortNumber(a, b) {
+        return a[1] - b[1];
+      });
+      for (var t = 0; t < List.length; t++) {
+        var li = document.createElement("li");
+        li.innerHTML = "第" + (t + 1) + "名:" + List[t][0] + "," + List[t][1];
+        aqiul.appendChild(li);
+
+        var li = document.createElement("li");
+        document.getElementById("aqi-list").appendChild(li);
+      } 
+
+    })();
+
+  </script>
+</body>
 
 </html>
