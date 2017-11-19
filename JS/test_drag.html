@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+    #div1,
+    #div2{
+      float: left;
+      width: 198px;
+      height: 66px;
+      padding: 10px;
+      margin:10px;
+      border: 1px solid #aaa;
+    }
+    </style>
+    <script type="text/javascript">
+      function drag(ev){
+        ev.dataTransfer.setData("Text",ev.target.id);
+      }
+      function allowDrop(ev){
+        ev.preventDefault();
+      }
+      function drop(ev){
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  </head>
+  <body>
+    <p>请把 W3School 的图片拖放到矩形中：</p>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img id="drag1" src="images/service-icon1.png" draggable="true" ondragstart="drag(event)"/>
+    </div>
+    <br />
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  </body>
+</html>
